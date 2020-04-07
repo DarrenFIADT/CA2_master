@@ -2748,7 +2748,7 @@ __webpack_require__.r(__webpack_exports__);
     }).then(function (response) {
       console.log(response.data);
       app.items = response.data.data;
-      app.getCourses(); //load all courses
+      app.getCourses();
     })["catch"](function (error) {
       console.log(error);
     });
@@ -2756,16 +2756,13 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     getCourses: function getCourses() {
       var app = this;
-      var token = localStorage.getItem('token'); //get the user token
-
+      var token = localStorage.getItem('token');
       axios.get('/api/courses', {
-        //get the json data from this route
         headers: {
           Authorization: "Bearer " + token
         }
       }).then(function (response) {
-        console.log(response.data); //display the data in the response
-
+        console.log(response.data);
         app.courses = response.data.data;
       })["catch"](function (error) {
         console.log(error);
@@ -2775,13 +2772,12 @@ __webpack_require__.r(__webpack_exports__);
       var app = this;
       var token = localStorage.getItem('token');
       axios["delete"]("/api/courses/".concat(id), {
-        //delete the course with this id in the route
         headers: {
           Authorization: "Bearer " + token
         }
       }).then(function (response) {
         console.log(response.data);
-        app.getCourses(); //get all courses
+        app.getCourses();
       });
     }
   }

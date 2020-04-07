@@ -1,6 +1,6 @@
 <!--
 @Date:   2020-03-26T17:40:30+00:00
-@Last modified time: 2020-04-07T23:32:05+01:00
+@Last modified time: 2020-04-08T00:38:39+01:00
 -->
 
 
@@ -51,7 +51,7 @@ export default {
     .then(function (response) {
        console.log(response.data);
        app.items = response.data.data;
-         app.getCourses(); //load all courses
+         app.getCourses();
     })
     .catch(function (error) {
        console.log(error);
@@ -60,12 +60,12 @@ export default {
   methods: {
     getCourses() {
       let app = this;
-      let token = localStorage.getItem('token'); //get the user token
-      axios.get('/api/courses', { //get the json data from this route
+      let token = localStorage.getItem('token');
+      axios.get('/api/courses', {
         headers: { Authorization: "Bearer " + token}
       })
       .then(function (response) {
-         console.log(response.data); //display the data in the response
+         console.log(response.data);
          app.courses = response.data.data;
       })
       .catch(function (error) {
@@ -75,12 +75,12 @@ export default {
     deleteCourse(id) {
       let app = this;
       let token = localStorage.getItem('token');
-      axios.delete(`/api/courses/${id}`, { //delete the course with this id in the route
+      axios.delete(`/api/courses/${id}`, {
         headers: { Authorization: "Bearer " + token}
       })
       .then(function (response){
         console.log(response.data);
-        app.getCourses(); //get all courses
+        app.getCourses(); 
       });
     }
   }
